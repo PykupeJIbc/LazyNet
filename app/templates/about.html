@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h1>{{ client.name }}</h1>
+
+    <div id="about-client">
+        <span>Информация о клиенте</span>
+        <table>
+            <tr><th>id:<td>{{client.id}}</tr>
+            <tr><th>Описание:<td>{{client.description}}</tr>
+            <tr><th>Дата регистрации:<td>{{client.reg_date}}</tr>
+            <tr><th>Маршрутизатор:<td>{{router.name}}</tr>
+            <tr><th>Интерфейс:<td>{{interface.name}}</tr>
+            <tr><th>IP-адресса:<td>
+                {% for ip in ip_addresses %}
+                    {{ ip }}<br>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+    <pre>{{status}}</pre><br>
+
+    <div id="arp">
+        <table>
+            <thead>
+                <tr>
+                    <th>IP Address</th>
+                    <th>MAC Address</th>
+                    <th>age</th>
+                    <th>Vendor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for arp in arps %}
+                    <tr>
+                        <td>{{ arp['address'] }}</td>
+                        <td>{{ arp['mac'] }}</td>
+                        <td>{{ arp['age'] }}</td>
+                        <td>{{ arp['vendor'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% for ping in pings %}
+        <pre>{{ping}}</pre>
+    {% endfor %}
+
+{% endblock %}
