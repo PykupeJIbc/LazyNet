@@ -6,7 +6,7 @@
 
     <div id="about-client">
         <span>Информация о клиенте</span>
-        <table>
+        <table class="table">
             <tr><th>id:<td>{{client.id}}</tr>
             <tr><th>Описание:<td>{{client.description}}</tr>
             <tr><th>Дата регистрации:<td>{{client.reg_date}}</tr>
@@ -23,8 +23,8 @@
     <pre>{{status}}</pre><br>
 
     <div id="arp">
-        <table>
-            <thead>
+        <table class="table">
+            <thead class="thead-dark">
                 <tr>
                     <th>IP Address</th>
                     <th>MAC Address</th>
@@ -48,5 +48,7 @@
     {% for ping in pings %}
         <pre>{{ping}}</pre>
     {% endfor %}
+
+    <a href="/">Назад</a>
 
 {% endblock %}
