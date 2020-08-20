@@ -2,33 +2,65 @@
 
 {% block body %}
 
-    <h1>{{ client.name }}</h1>
+    <div class="container">
+        <h1 class="display-4">{{ client.name }}</h1>
+    </div>
 
-    <div id="about-client">
-        <span>Информация о клиенте</span>
-        <table class="table">
-            <tr><th>id:<td>{{client.id}}</tr>
-            <tr><th>Описание:<td>{{client.description}}</tr>
-            <tr><th>Дата регистрации:<td>{{client.reg_date}}</tr>
-            <tr><th>Маршрутизатор:<td>{{router.name}}</tr>
-            <tr><th>Интерфейс:<td>{{interface.name}}</tr>
-            <tr><th>IP-адресса:<td>
-                {% for ip in ip_addresses %}
-                    {{ ip }}<br>
-                {% endfor %}
+    <div class="container">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th scope="row">id:</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Descroption:</th>
+                <td>{{ client.description }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Registration Date:</th>
+                <td>{{ client.reg_date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Router</th>
+                <td>{{ router.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Interface:</th>
+                <td>{{ interface.name }}</td>
             </tr>
         </table>
     </div>
 
-    <pre>{{status}}</pre><br>
+    <div class="container mt-2">
+        <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#ip-addresses">IP-addresses</button>
+        <div class="collapse" id="ip-addresses">
+          <div class="card card-body">
+            <div class="d-flex flex-wrap justidy-content-around">
+                {% for ip in ip_addresses %}
+                    <div class="p-2">{{ ip }}</div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+    </div>
 
-    <div id="arp">
-        <table class="table">
-            <thead class="thead-dark">
+    <div class="container mt-2">
+        <button class="btn btn-warning btn-block" type="button" data-toggle="collapse" data-target="#status">Status</button>
+        <div class="collapse" id="status">
+            <div class="card card-body">
+                <pre>{{ status }}</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-2">
+        <button class="btn btn-success btn-block" type="button" data-toggle="collapse" data-target="#arp-table">ARP-Table</button>
+        <div class="collapse" id="arp-table">
+          <table class="table table-striped table-bordered">
+            <thead class="thead-light">
                 <tr>
                     <th>IP Address</th>
                     <th>MAC Address</th>
-                    <th>age</th>
                     <th>Vendor</th>
                 </tr>
             </thead>
@@ -37,18 +69,31 @@
                     <tr>
                         <td>{{ arp['address'] }}</td>
                         <td>{{ arp['mac'] }}</td>
-                        <td>{{ arp['age'] }}</td>
                         <td>{{ arp['vendor'] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
-        </table>
+          </table>
+        </div>
+      </div>
+  
+    <div class="container mt-2">
+        <button class="btn btn-danger btn-block" type="button" data-toggle="collapse" data-target="#pings">pings</button>
+        <div class="collapse" id="pings">
+          <div class="card card-body">
+                {% for ping in pings %}
+                    <pre class="pre-scrollable">{{ ping }}</pre>
+                {% endfor %}
+          </div>
+        </div>
     </div>
 
-    {% for ping in pings %}
-        <pre>{{ping}}</pre>
-    {% endfor %}
-
-    <a href="/">Назад</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-bottom justify-content-center">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="btn btn-dark" type="button" href="/">Back</a>
+            </li>
+        </ul>
+    </nav>
 
 {% endblock %}

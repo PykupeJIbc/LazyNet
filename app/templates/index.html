@@ -1,23 +1,29 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container mt-5">
-    <form action="/about" method="post">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Выберите клиента</span>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1 class="display-3">LazyNet</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <form action="/about" method="post">
+            <div class="input-group">                
+                <select autofocus required class="form-control" name="client" id="select">
+                    <option disabled selected>Выберите клиента</option>
+                    {% for client in clients %}
+                    <option value="{{ client.id }}">{{ client.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <input class="btn btn-primary" type="submit" value="Check">
+                </div>
             </div>
-            <select autofocus required class="form-control" name="client" id="select">
-                <option disabled selected>Выберите клиента</option>
-                {% for client in clients %}
-                <option value="{{ client.id }}">{{ client.name }}</option>
-                {% endfor %}
-            </select>
-            <div class="input-group-append">
-                <input class="btn btn-success" type="submit" value="send">
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 <script>
