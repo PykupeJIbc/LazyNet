@@ -8,18 +8,18 @@
 
     <div class="container">
         <table class="table table-bordered table-striped">
-            <tr>
+<!--            <tr>
                 <th scope="row">id:</th>
                 <td>{{ client.id }}</td>
-            </tr>
+            </tr>                           -->
             <tr>
                 <th scope="row">Descroption:</th>
                 <td>{{ client.description }}</td>
             </tr>
-            <tr>
+<!--            <tr>
                 <th scope="row">Registration Date:</th>
                 <td>{{ client.reg_date }}</td>
-            </tr>
+            </tr>                           -->
             <tr>
                 <th scope="row">Router</th>
                 <td>{{ router.name }}</td>
@@ -27,6 +27,10 @@
             <tr>
                 <th scope="row">Interface:</th>
                 <td>{{ interface.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Speed:</th>
+                <td>{{ client.speed }} KBps</td>
             </tr>
         </table>
     </div>
